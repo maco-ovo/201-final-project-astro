@@ -1,17 +1,43 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import productsData from "../data/products.json";
+import { ProductCatalog } from "../logic/ProductCatalog";
 
+// Initialize the catalog with the JSON data
+const catalog = new ProductCatalog(productsData);
+const allProducts = catalog.getAllProducts();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Jewelry Store">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8 text-center">Our Collection</h1>
+    
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="product-grid">
+      {allProducts.map((product) => (
+        <div class="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+          <img src={product.image} alt={product.title} class="w-full h-48 object-cover mb-4 rounded" />
+          <h2 class="text-xl font-semibold">{product.title}</h2>
+          <p class="text-gray-600 mb-2">{product.category}</p>
+          <div class="flex justify-between items-center">
+            <span class="text-lg font-bold">{product.getFormattedPrice()}</span>
+            <span class={`text-sm ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
+              {product.getAvailabilityMessage()}
+            </span>
+          </div>
+          <a href={`/products/${product.slug}`} class="mt-4 block text-center bg-black text-white py-2 rounded">
+            View Details
+          </a>
+        </div>
+      ))}
+    </div>
+  </main>
+
+  <!-- jQuery for interactivity later! -->
+  <script>
+    import $ from 'jquery';
+    $(document).ready(() => {
+      console.log("jQuery is ready for the interactive island!");
+    });
+  </script>
+</Layout>
