@@ -10,13 +10,13 @@ const allProducts = catalog.getAllProducts();
 ---
 
 <Layout title="Jewelry Store">
-  <main class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8 text-center">Our Collection</h1>
+  <main class="bg-gradient-to-b from-[#BBE2F0] via-white to-white bg-size-[100%] mx-auto px-16 py-8">
+    <h1 class="font-serif text-gray-800 text-4xl font-bold m-16 text-center ">Our Collection</h1>
     
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="product-grid">
       {allProducts.map((product) => (
-        <div class="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+        <div class="bg-gray-50/80 rounded-lg p-5 shadow-md hover:scale-103 hover:shadow-mist-400 duration-300">
           <img src={product.image} alt={product.title} class="w-full h-48 object-cover mb-4 rounded" />
           <h2 class="text-xl font-semibold">{product.title}</h2>
           <p class="text-gray-600 mb-2">{product.category}</p>
@@ -26,7 +26,7 @@ const allProducts = catalog.getAllProducts();
               {product.getAvailabilityMessage()}
             </span>
           </div>
-          <a href={`/products/${product.slug}`} class="mt-4 block text-center bg-black text-white py-2 rounded">
+          <a href={`/products/${product.slug}`} class="mt-4 block text-center bg-[#1c97bd] text-white py-2 rounded">
             View Details
           </a>
         </div>
