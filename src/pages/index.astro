@@ -7,10 +7,12 @@ import '../styles/global.css'
 // Initialize the catalog with the JSON data
 const catalog = new ProductCatalog(productsData);
 const allProducts = catalog.getAllProducts();
+
+
 ---
 
 <Layout title="Jewelry Store">
-  <main class="bg-gradient-to-b from-[#BBE2F0] via-white to-white bg-size-[100%] mx-auto px-16 py-8">
+  <main class="bg-gradient-to-b from-[#BBE2F0] via-white via-20% to-white mx-auto px-16 py-8">
     <h1 class="font-serif text-gray-800 text-4xl font-bold m-16 text-center ">Our Collection</h1>
     
 
@@ -26,7 +28,7 @@ const allProducts = catalog.getAllProducts();
               {product.getAvailabilityMessage()}
             </span>
           </div>
-          <a href={`/products/${product.slug}`} class="mt-4 block text-center bg-[#1c97bd] text-white py-2 rounded">
+          <a href={`/products/${product.slug}`} class="mt-4 block text-center bg-[#1c97bd] text-white border-white py-2 rounded-4xl hover:bg-[#1c97bdc4]">
             View Details
           </a>
         </div>
